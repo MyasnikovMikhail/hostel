@@ -4,7 +4,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.example.model.TypeComfort;
-import org.example.model.TypeFlat;
+import org.example.model.TypeGender;
 
 import java.time.LocalDate;
 
@@ -19,13 +19,13 @@ public class RoomDto {
 
     private byte flat;
 
-    private TypeFlat typeFlat;
+    private TypeGender typeGender;
 
     private TypeComfort typeComfort;
 
-    private TypeComfort NumberOfSeats;
+    private byte NumberOfSeats;
 
     private LocalDate dateOfChange;
 
-    private LocalDate birthdate;
+    private LocalDate dateOfAddition;
 }

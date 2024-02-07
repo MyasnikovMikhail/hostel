@@ -4,6 +4,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.example.model.Room;
+import org.example.model.TypeGender;
 
 import java.time.LocalDate;
 
@@ -14,7 +15,7 @@ public class GuestDto {
 
     private Long id;
 
-    private Room team;
+    private Room numRoom;
 
     private String name;
 
@@ -22,9 +23,9 @@ public class GuestDto {
 
     private String patronymic;
 
-    private String gender;
+    private TypeGender gender;
 
     private LocalDate dateOfChange;
 
-    private LocalDate birthdate;
+    private LocalDate dateOfAddition;
 }

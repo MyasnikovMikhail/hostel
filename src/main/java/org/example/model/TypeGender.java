@@ -1,5 +1,5 @@
 package org.example.model;
 
-public enum TypeFlat {
+public enum TypeGender {
     MEN, WOMEN;
 }

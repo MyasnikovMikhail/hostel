@@ -29,20 +29,20 @@ public class Room {
     private byte flat;
 
     @Column(name = "type_flat", unique = true)
-    private TypeFlat typeFlat;
+    private TypeGender typeGender;
 
     @Column(name = "type_comfort", unique = true)
     private TypeComfort typeComfort;
 
     @Column(name = "number_seats", unique = true)
-    private TypeComfort NumberOfSeats;
+    private byte NumberOfSeats;
 
     @Column(name = "date_change")
     private LocalDate dateOfChange;
 
     @Column(name = "date_addition")
-    private LocalDate birthdate;
+    private LocalDate dateOfAddition;
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "room", cascade = CascadeType.REMOVE)
-    private Set<Room> playerTeam;
+    private Set<Guest> guests;
 }

@@ -23,7 +23,7 @@ public class Guest {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "room_id", nullable = false)
-    private Room team;
+    private Room numRoom;
 
     @Column(name = "name", unique = true)
     private String name;
@@ -35,11 +35,11 @@ public class Guest {
     private String patronymic;
 
     @Column(name = "gender")
-    private String gender;
+    private TypeGender gender;
 
     @Column(name = "date_change")
     private LocalDate dateOfChange;
 
     @Column(name = "date_addition")
-    private LocalDate birthdate;
+    private LocalDate dateOfAddition;
 }
