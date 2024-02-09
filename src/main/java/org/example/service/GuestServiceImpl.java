@@ -26,7 +26,7 @@ public class GuestServiceImpl implements GuestService {
     @Transactional
     @Override
     public void create(GuestDto guestDto) {
-        Room room = roomRepo.findById(guestDto.getNumRoom());
+        Room room = roomRepo.findById(guestDto.getRoom());
     if(room.getTypeGender().equals(guestDto.getGender()) && room.getNumberOfSeats() > 0)
         guestRepo.save(guestDtoToGuest(guestDto));
     }
@@ -43,7 +43,7 @@ public class GuestServiceImpl implements GuestService {
 
     private Guest guestDtoToGuest(GuestDto guestDto) {
         Guest guest = new Guest();
-        guest.setNumRoom(guestDto.getNumRoom());
+        guest.setRoom(guestDto.getRoom());
         guest.setName(guestDto.getName());
         guest.setSurname(guestDto.getSurname());
         guest.setPatronymic(guestDto.getPatronymic());
@@ -57,7 +57,7 @@ public class GuestServiceImpl implements GuestService {
     private GuestDto convertToGuestDTO(Guest guest) {
         GuestDto guestDto = new GuestDto();
         guestDto.setId(guest.getId());
-        guestDto.setNumRoom(guest.getNumRoom());
+        guestDto.setRoom(guest.getRoom());
         guestDto.setName(guest.getName());
         guestDto.setSurname(guest.getSurname());
         guestDto.setPatronymic(guest.getPatronymic());

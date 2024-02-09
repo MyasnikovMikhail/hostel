@@ -15,7 +15,7 @@ public class GuestDto {
 
     private Long id;
 
-    private Room numRoom;
+    private Room room;
 
     private String name;
 

@@ -23,7 +23,7 @@ public class Guest {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "room_id", nullable = false)
-    private Room numRoom;
+    private Room room;
 
     @Column(name = "name", unique = true)
     private String name;
