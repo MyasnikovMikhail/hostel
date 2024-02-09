@@ -1,0 +1,70 @@
+<databaseChangeLog
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog https://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
+
+    <changeSet id="sequence" author="I am">
+        <createSequence sequenceName="SEQ_SERVICE" cycle="false" startValue="1" incrementBy="1"/>
+    </changeSet>
+    <changeSet id="create-table-guests" author="root">
+        <createTable tableName="guests">
+            <column name="id" type="bigint" defaultValueSequenceNext="SEQ_SERVICE">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="room_id" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+            <column name="name" type="text">
+                <constraints nullable="false"/>
+            </column>
+            <column name="surname" type="text">
+                <constraints nullable="false"/>
+            </column>
+            <column name="patronymic" type="text">
+                <constraints nullable="false"/>
+            </column>
+            <column name="gender" type="text">
+                <constraints nullable="false"/>
+            </column>
+            <column name="date_change" type="date">
+                <constraints nullable="false"/>
+            </column>
+            <column name="date_addition" type="date">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="create-table-rooms" author="root">
+        <createTable tableName="rooms">
+            <column name="id" type="bigint" defaultValueSequenceNext="SEQ_SERVICE">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="floor" type="int1">
+                <constraints nullable="false"/>
+            </column>
+            <column name="flat" type="int1">
+                <constraints nullable="false"/>
+            </column>
+            <column name="type_flat" type="text">
+                <constraints nullable="false"/>
+            </column>
+            <column name="type_comfort" type="text">
+                <constraints nullable="false"/>
+            </column>
+            <column name="number_seats" type="int1">
+                <constraints nullable="false"/>
+            </column>
+            <column name="date_change" type="date">
+                <constraints nullable="false"/>
+            </column>
+            <column name="date_addition" type="date">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+
+        <addForeignKeyConstraint baseTableName="rooms" baseColumnNames="id"
+                                 constraintName="fk_guests_id_rooms_id"
+                                 referencedTableName="rooms" referencedColumnNames="id"/>
+    </changeSet>
+</databaseChangeLog>
