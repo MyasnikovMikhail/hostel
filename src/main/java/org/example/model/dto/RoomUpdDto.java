@@ -6,12 +6,17 @@ import lombok.Setter;
 import org.example.model.TypeComfort;
 import org.example.model.TypeGender;
 
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
+
 
 @Getter
 @Setter
 @NoArgsConstructor
 public class RoomUpdDto {
 
+    @Min(1)
+    @Max(100)
     private Integer flat;
 
     private TypeGender typeGender;

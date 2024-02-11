@@ -1,4 +1,4 @@
-package org.example;
+package org.example.RoomTest;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.example.model.dto.RoomDto;

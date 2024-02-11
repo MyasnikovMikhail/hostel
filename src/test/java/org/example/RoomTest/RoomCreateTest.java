@@ -1,4 +1,4 @@
-package org.example;
+package org.example.RoomTest;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.example.model.dto.RoomDto;
@@ -51,7 +51,7 @@ public class RoomCreateTest {
                 .andDo(print())
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$[0].id").exists())
-                .andExpect(jsonPath("$[0].flat", 5).exists())
+                .andExpect(jsonPath("$[0].flat", 20).exists())
                 .andExpect(jsonPath("$[0].dateOfChange", LocalDate.now()).exists())
                 .andExpect(jsonPath("$[0].typeComfort", LUXE).exists())
                 .andExpect(jsonPath("$[1].id").exists())

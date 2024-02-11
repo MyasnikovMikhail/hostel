@@ -27,7 +27,7 @@ public class RoomDto {
 
     @NotNull
     @Min(1)
-    @Max(10)
+    @Max(100)
     private Integer flat;
 
     private TypeGender typeGender;

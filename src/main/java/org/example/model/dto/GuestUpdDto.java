@@ -14,7 +14,6 @@ import javax.validation.constraints.NotNull;
 @NoArgsConstructor
 public class GuestUpdDto {
 
-    @NotNull
     @Min(1)
     @Max(100)
     private Byte numFlat;

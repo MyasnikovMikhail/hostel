@@ -34,4 +34,12 @@ public class GuestDto {
     private LocalDate dateOfChange;
 
     private LocalDate dateOfAddition;
+
+    public GuestDto(Integer numFlat, String name, String surname, String patronymic, TypeGender gender) {
+        this.numFlat = numFlat;
+        this.name = name;
+        this.surname = surname;
+        this.patronymic = patronymic;
+        this.gender = gender;
+    }
 }
