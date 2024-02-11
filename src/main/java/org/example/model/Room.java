@@ -22,20 +22,25 @@ public class Room {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "roomsIdSeq")
     private Long id;
 
-    @Column(name = "floor", unique = true)
-    private byte floor;
+    @Column(name = "floor")
+    private Integer floor;
 
     @Column(name = "flat", unique = true)
-    private byte flat;
+    private Integer flat;
 
-    @Column(name = "type_flat", unique = true)
+    @Column(name = "type_flat")
+    @Enumerated(EnumType.STRING)
     private TypeGender typeGender;
 
-    @Column(name = "type_comfort", unique = true)
+    @Column(name = "type_comfort")
+    @Enumerated(EnumType.STRING)
     private TypeComfort typeComfort;
 
-    @Column(name = "number_seats", unique = true)
-    private byte NumberOfSeats;
+    @Column(name = "number_seats")
+    private Integer numberOfSeats;
+
+    @Column(name = "total_seats")
+    private Integer totalSeats;
 
     @Column(name = "date_change")
     private LocalDate dateOfChange;

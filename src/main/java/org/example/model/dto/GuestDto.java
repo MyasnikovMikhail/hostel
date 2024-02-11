@@ -6,6 +6,9 @@ import lombok.Setter;
 import org.example.model.Room;
 import org.example.model.TypeGender;
 
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
 
 @Getter
@@ -15,7 +18,10 @@ public class GuestDto {
 
     private Long id;
 
-    private Room room;
+    @NotNull
+    @Min(1)
+    @Max(100)
+    private Integer numFlat;
 
     private String name;
 

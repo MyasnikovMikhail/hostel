@@ -25,7 +25,7 @@ public class Guest {
     @JoinColumn(name = "room_id", nullable = false)
     private Room room;
 
-    @Column(name = "name", unique = true)
+    @Column(name = "name")
     private String name;
 
     @Column(name = "surname")
@@ -35,10 +35,11 @@ public class Guest {
     private String patronymic;
 
     @Column(name = "gender")
+    @Enumerated(EnumType.STRING)
     private TypeGender gender;
 
     @Column(name = "date_change")
-    private LocalDate dateOfChange;
+    private LocalDate dateOfChange ;
 
     @Column(name = "date_addition")
     private LocalDate dateOfAddition;

@@ -1,5 +1,5 @@
 package org.example.model;
 
 public enum TypeComfort {
-    STANDART, DE_LUXE, LUXE;
+    STANDARD, DE_LUXE, LUXE;
 }
