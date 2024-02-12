@@ -88,9 +88,12 @@ public class RoomServiceImpl implements RoomService {
     @Override
     public void update(int numFlat, RoomUpdDto roomUpdDto) {
         Room room = roomRepo.findRoomByFlat(numFlat).orElseThrow(EntityNotFoundException::new);
-        room.setTypeGender(roomUpdDto.getTypeGender() == null ? room.getTypeGender() : roomUpdDto.getTypeGender());
+        room.setFlat(roomUpdDto.getFlat() == 0 ||  roomRepo.findRoomByFlat(roomUpdDto.getFlat()).isPresent() ? room.getFlat() : roomUpdDto.getFlat());
+        room.setTypeGender(roomUpdDto.getTypeGender() == null || room.getTotalSeats().intValue() != room.getNumberOfSeats().intValue() ? room.getTypeGender() : roomUpdDto.getTypeGender());
         room.setTypeComfort(roomUpdDto.getTypeComfort() == null ? room.getTypeComfort() : roomUpdDto.getTypeComfort());
-        if(roomUpdDto.getTotalSeats() >= room.getNumberOfSeats() || roomUpdDto.getNumberOfSeats() == 0) {
+
+        if(roomUpdDto.getNumberOfSeats() >= room.getNumberOfSeats()) {
+            room.setNumberOfSeats(roomUpdDto.getNumberOfSeats() - (room.getTotalSeats() - room.getNumberOfSeats()));
             room.setTotalSeats(roomUpdDto.getNumberOfSeats());
         } else {
             throw new ErrorNumberGuests("Количество жителей превышает новое число мест. Переселите или удалите жильцов из комнаты.");

@@ -16,7 +16,7 @@ public class GuestUpdDto {
 
     @Min(1)
     @Max(100)
-    private Byte numFlat;
+    private Integer numFlat;
 
     private String name;
 
@@ -24,6 +24,11 @@ public class GuestUpdDto {
 
     private String patronymic;
 
-    private TypeGender gender;
 
+    public GuestUpdDto(Integer numFlat, String name, String surname, String patronymic) {
+        this.numFlat = numFlat;
+        this.name = name;
+        this.surname = surname;
+        this.patronymic = patronymic;
+    }
 }

@@ -119,6 +119,7 @@ public class GuestCreateTest {
                                 .accept(MediaType.APPLICATION_JSON))
                 .andExpect(status().is(404))
                 .andExpect(jsonPath("$.info").value("В комнате нет свободных мест"));
+
     }
 
 

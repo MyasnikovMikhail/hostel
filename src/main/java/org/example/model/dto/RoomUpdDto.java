@@ -27,4 +27,11 @@ public class RoomUpdDto {
 
     private Integer totalSeats = numberOfSeats;
 
+    public RoomUpdDto(Integer flat, TypeGender typeGender, TypeComfort typeComfort, Integer numberOfSeats) {
+        this.flat = flat;
+        this.typeGender = typeGender;
+        this.typeComfort = typeComfort;
+        this.numberOfSeats = numberOfSeats;
+        this.totalSeats = numberOfSeats;
+    }
 }

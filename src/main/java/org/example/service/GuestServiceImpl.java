@@ -109,14 +109,20 @@ public class GuestServiceImpl implements GuestService {
     @Override
     public void update(Long id, GuestUpdDto guestUpdDto) {
         Guest guest = guestRepo.findById(id).orElseThrow(EntityNotFoundException::new);
-        guest.setRoom(guestUpdDto.getNumFlat() == null ? roomRepo.findRoomByFlat(guest.getRoom().getFlat()).orElseThrow(EntityNotFoundException::new) : roomRepo.findRoomByFlat(guestUpdDto.getNumFlat()).get());
+        Optional<Room> room = roomRepo.findRoomByFlat(guestUpdDto.getNumFlat());
+        if(room.isPresent() && room.get().getNumberOfSeats() > 0){
+            guest.setRoom(room.get());
+            room.get().setNumberOfSeats(room.get().getNumberOfSeats() + 1);
+        } else {
+            guest.setRoom(guest.getRoom());
+        }
         guest.setName(guestUpdDto.getName() == null ? guest.getName() : guestUpdDto.getName());
         guest.setSurname(guestUpdDto.getSurname() == null ? guest.getSurname() : guestUpdDto.getSurname());
         guest.setPatronymic(guestUpdDto.getPatronymic() == null ? guest.getPatronymic() : guestUpdDto.getPatronymic());
-        guest.setGender(guestUpdDto.getGender() == null ? guest.getGender() : guestUpdDto.getGender());
         guest.setDateOfChange(LocalDate.now());
-        Optional<Room> room = roomRepo.findById(guest.getRoom().getId());
-        room.get().setDateOfChange(LocalDate.now());
+        Optional<Room> room2 = roomRepo.findById(guest.getRoom().getId());
+        room2.get().setNumberOfSeats(room.get().getNumberOfSeats() - 1);
+        room2.get().setDateOfChange(LocalDate.now());
         roomRepo.save(room.get());
     }
 
