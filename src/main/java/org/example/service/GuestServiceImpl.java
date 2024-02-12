@@ -1,5 +1,8 @@
 package org.example.service;
 
+import org.example.exception.IncorrectData;
+import org.example.exception.IncorrectGender;
+import org.example.exception.NoAvailableSeats;
 import org.example.exception.NoSuchObjectException;
 import org.example.model.Guest;
 import org.example.model.Room;
@@ -9,6 +12,7 @@ import org.example.model.dto.GuestDto;
 import org.example.model.dto.GuestUpdDto;
 import org.example.repos.GuestRepo;
 import org.example.repos.RoomRepo;
+import org.junit.jupiter.params.shadow.com.univocity.parsers.common.DataValidationException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -35,11 +39,17 @@ public class GuestServiceImpl implements GuestService {
     public void create(GuestDto guestDto) {
         Optional<Room> room = roomRepo.findRoomByFlat(guestDto.getNumFlat());
         if (!room.isPresent()) throw new NoSuchObjectException("Квартиры под таким номером не существует");
-        if (room.get().getTypeGender().equals(guestDto.getGender()) && room.get().getNumberOfSeats() > 0) {
-            room.get().setNumberOfSeats(room.get().getNumberOfSeats() - 1);
-            room.get().setDateOfChange(LocalDate.now());
-            roomRepo.save(room.get());
-            guestRepo.save(guestDtoToGuest(guestDto));
+        if (room.get().getTypeGender().equals(guestDto.getGender())) {
+            if (room.get().getNumberOfSeats() > 0) {
+                room.get().setNumberOfSeats(room.get().getNumberOfSeats() - 1);
+                room.get().setDateOfChange(LocalDate.now());
+                roomRepo.save(room.get());
+                guestRepo.save(guestDtoToGuest(guestDto));
+            } else {
+                throw new NoAvailableSeats("В комнате нет свободных мест");
+            }
+        } else {
+            throw new IncorrectGender("Пол постояльца отличается от типа комнаты ");
         }
     }
 
@@ -90,6 +100,7 @@ public class GuestServiceImpl implements GuestService {
         Optional<Room> room = roomRepo.findById(guest.get().getRoom().getId());
         room.get().setNumberOfSeats(room.get().getNumberOfSeats() + 1);
         room.get().setDateOfChange(LocalDate.now());
+        roomRepo.save(room.get());
         guestRepo.deleteById(id);
 
     }

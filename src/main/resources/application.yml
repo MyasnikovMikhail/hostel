@@ -15,4 +15,3 @@ spring:
     show-sql: true
     hibernate:
       ddl-auto: create
-    database-platform: org.hibernate.dialect.PostgreSQLDialect

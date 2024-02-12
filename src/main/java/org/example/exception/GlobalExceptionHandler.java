@@ -22,4 +22,28 @@ public class GlobalExceptionHandler {
 
         return new ResponseEntity<>(data, HttpStatus.NOT_FOUND);
     }
+
+    @ExceptionHandler
+    public ResponseEntity<IncorrectData> handlerException(ErrorNumberGuests exception) {
+        IncorrectData data = new IncorrectData();
+        data.setInfo(exception.getMessage());
+
+        return new ResponseEntity<>(data, HttpStatus.NOT_FOUND);
+    }
+
+    @ExceptionHandler
+    public ResponseEntity<IncorrectData> handlerException(IncorrectGender exception) {
+        IncorrectData data = new IncorrectData();
+        data.setInfo(exception.getMessage());
+
+        return new ResponseEntity<>(data, HttpStatus.NOT_FOUND);
+    }
+
+    @ExceptionHandler
+    public ResponseEntity<IncorrectData> handlerException(NoAvailableSeats exception) {
+        IncorrectData data = new IncorrectData();
+        data.setInfo(exception.getMessage());
+
+        return new ResponseEntity<>(data, HttpStatus.NOT_FOUND);
+    }
 }

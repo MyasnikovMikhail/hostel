@@ -40,18 +40,18 @@
             <column name="id" type="bigint" defaultValueSequenceNext="SEQ_SERVICE">
                 <constraints nullable="false" primaryKey="true"/>
             </column>
-            <column name="floor" type="tinyint">
+            <column name="floor" type="int">
                 <constraints nullable="false"/>
             </column>
-            <column name="flat" type="tinyint">
+            <column name="flat" type="int">
                 <constraints nullable="false"/>
             </column>
-            <column name="type_flat" type="text"/>
-<!--                <constraints nullable="false"/>-->
-<!--            </column>-->
-            <column name="type_comfort" type="text"/>
-<!--                <constraints nullable="false"/>-->
-<!--            </column>-->
+            <column name="type_flat" type="text">
+                <constraints nullable="false"/>
+            </column>
+            <column name="type_comfort" type="text">
+                <constraints nullable="false"/>
+            </column>
             <column name="number_seats" type="int">
                 <constraints nullable="false"/>
             </column>
