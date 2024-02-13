@@ -156,3 +156,170 @@
   - URL "/rooms/{numFlat}"
      - numFlat : номер комнаты
      - Комнату можно удалить, только если в ней нет постояльцев
+
+# Управление постояльцами
+## Получение всех постояльцев
+- метод GET
+ - URL "/guest-read-all"  
+       
+\- Пример ответного JSON: 
+   ```JSON
+[
+    {
+        "id": 2,
+        "numFlat": 2,
+        "name": "Sasha",
+        "surname": "Petrov",
+        "patronymic": "Ivanovich",
+        "gender": "MEN",
+        "dateOfChange": "2024-02-13",
+        "dateOfAddition": "2024-02-13"
+    },
+    {
+        "id": 4,
+        "numFlat": 1,
+        "name": "Alex",
+        "surname": "Ivanov",
+        "patronymic": "Ivanovich",
+        "gender": "MEN",
+        "dateOfChange": "2024-02-13",
+        "dateOfAddition": "2024-02-13"
+    }
+]
+  ```
+## Добавление постояльца
+  - метод POST
+  - URL "/guest-create"
+  - можно добавить только в ту комнату, которая подходит по типу комнаты (М, Ж)
+  - можно добавить в комнату, только если там есть свободные места
+    - numFlat : номер комнаты, ограничение с 1 по 100 квартиру
+    - name : имя постояльца
+    - surname : фамилия постояльца
+    - patronymic : отчество постояльца
+    - gender : пол (MEN, WOMEN)
+  
+   \- Пример JSON: 
+   ```JSON
+       {
+         "numFlat" : 1,
+         "name" : "Alex",
+         "surname" : "Petrov",
+         "patronymic" : "Ivanovich",
+         "gender" : "MEN"
+      }
+  ```
+## Изменение постояльца
+  - метод PUT
+  - URL "/guests/{id}"
+    - id : id постояльца в базе данных
+    - Параметры для изменения. Возможно частичное изменение:  
+      \- numFlat - номер комнаты, ограничение с 1 по 100 квартиру
+      \- name - имя постояльца  
+      \- surname -  фамилия постояльца
+      \- patronymic - отчество постояльца 
+          
+   \- Пример JSON: 
+   ```JSON
+       {
+          "numFlat" : 2,
+          "name" : "Vlad",
+          "surname" : "Ivanov",
+          "patronymic" : "Artemovich"
+       }
+  ```
+## Фильтрация по полу
+  - метод GET
+  - URL "/guest-read-all/gender/{gender}"
+    - gender : MEN, WOMEN  
+          
+   \- Пример ответного JSON: 
+   ```JSON
+[
+    {
+        "id": 2,
+        "numFlat": 2,
+        "name": "Sasha",
+        "surname": "Petrov",
+        "patronymic": "Ivanovich",
+        "gender": "MEN",
+        "dateOfChange": "2024-02-13",
+        "dateOfAddition": "2024-02-13"
+    },
+    {
+        "id": 4,
+        "numFlat": 1,
+        "name": "Alex",
+        "surname": "Ivanov",
+        "patronymic": "Ivanovich",
+        "gender": "MEN",
+        "dateOfChange": "2024-02-13",
+        "dateOfAddition": "2024-02-13"
+    }
+]
+  ```
+## Получения всех постояльцев по комнате
+  - метод GET
+  - URL "/guest-read-all/{roomFlat}"
+    - roomFlat : номер комнаты
+          
+   \- Пример ответного JSON: 
+   ```JSON
+[
+    {
+        "id": 2,
+        "numFlat": 5,
+        "name": "Sasha",
+        "surname": "Petrov",
+        "patronymic": "Ivanovich",
+        "gender": "MEN",
+        "dateOfChange": "2024-02-13",
+        "dateOfAddition": "2024-02-13"
+    },
+    {
+        "id": 4,
+        "numFlat": 5,
+        "name": "Alex",
+        "surname": "Ivanov",
+        "patronymic": "Ivanovich",
+        "gender": "MEN",
+        "dateOfChange": "2024-02-13",
+        "dateOfAddition": "2024-02-13"
+    }
+]
+  ```
+## Получения всех постояльцев, остановившихся в комнате по типу комфорта
+  - метод GET
+  - URL "/guest-read-all/comfort/{typeComfort}"
+    - typeComfort : тип комфорта (STANDARD, DE_LUXE, LUXE) 
+          
+   \- Пример ответного JSON: 
+   ```JSON
+[
+    {
+        "id": 1,
+        "floor": 7,
+        "flat": 23,
+        "typeGender": "WOMEN",
+        "typeComfort": "LUXE",
+        "numberOfSeats": 2,
+        "totalSeats": 2,
+        "dateOfChange": "2024-02-12",
+        "dateOfAddition": "2024-02-12"
+    },
+    {
+        "id": 2,
+        "floor": 2,
+        "flat": 5,
+        "typeGender": "WOMEN",
+        "typeComfort": "LUXE",
+        "numberOfSeats": 6,
+        "totalSeats": 6,
+        "dateOfChange": "2024-02-13",
+        "dateOfAddition": "2024-02-13"
+    }
+]
+  ```
+## Удаление комнаты
+  - метод DELETE
+  - URL "/guests/{id}"
+     - id : id постояльца в базе данных
