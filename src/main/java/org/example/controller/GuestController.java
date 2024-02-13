@@ -26,22 +26,22 @@ public class GuestController {
 
     @GetMapping(value = "/guest-read-all")
     public List<GuestDto> readAll() {
-        return  guestService.readAll();
+        return guestService.readAll();
     }
 
     @GetMapping(value = "/guest-read-all/gender/{gender}")
     public List<GuestDto> readAll(@PathVariable(name = "gender") TypeGender gender) {
-        return  guestService.readAll(gender);
+        return guestService.readAll(gender);
     }
 
     @GetMapping(value = "/guest-read-all/{roomFlat}")
     public List<GuestDto> readAll(@PathVariable(name = "roomFlat") int roomFlat) {
-        return  guestService.readAll(roomFlat);
+        return guestService.readAll(roomFlat);
     }
 
     @GetMapping(value = "/guest-read-all/comfort/{typeComfort}")
     public List<GuestDto> readAll(@PathVariable(name = "typeComfort") TypeComfort roomTypeComfort) {
-        return  guestService.readAll(roomTypeComfort);
+        return guestService.readAll(roomTypeComfort);
     }
 
     @DeleteMapping(value = "/guests/{id}")

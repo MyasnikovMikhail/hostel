@@ -1,6 +1,5 @@
 package org.example.service;
 
-import org.example.exception.IncorrectData;
 import org.example.exception.IncorrectGender;
 import org.example.exception.NoAvailableSeats;
 import org.example.exception.NoSuchObjectException;
@@ -12,7 +11,6 @@ import org.example.model.dto.GuestDto;
 import org.example.model.dto.GuestUpdDto;
 import org.example.repos.GuestRepo;
 import org.example.repos.RoomRepo;
-import org.junit.jupiter.params.shadow.com.univocity.parsers.common.DataValidationException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -110,7 +108,7 @@ public class GuestServiceImpl implements GuestService {
     public void update(Long id, GuestUpdDto guestUpdDto) {
         Guest guest = guestRepo.findById(id).orElseThrow(EntityNotFoundException::new);
         Optional<Room> room = roomRepo.findRoomByFlat(guestUpdDto.getNumFlat());
-        if(room.isPresent() && room.get().getNumberOfSeats() > 0){
+        if (room.isPresent() && room.get().getNumberOfSeats() > 0) {
             guest.setRoom(room.get());
             room.get().setNumberOfSeats(room.get().getNumberOfSeats() + 1);
         } else {
@@ -137,7 +135,6 @@ public class GuestServiceImpl implements GuestService {
         guest.setDateOfAddition(guestDto.getDateOfAddition());
         return guest;
     }
-
 
     private GuestDto convertToGuestDTO(Guest guest) {
         GuestDto guestDto = new GuestDto();

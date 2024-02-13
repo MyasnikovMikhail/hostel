@@ -12,7 +12,6 @@ import org.springframework.test.web.servlet.MockMvc;
 import java.time.LocalDate;
 
 import static org.example.model.TypeComfort.*;
-import static org.example.model.TypeComfort.STANDARD;
 import static org.example.model.TypeGender.MEN;
 import static org.example.model.TypeGender.WOMEN;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
@@ -32,7 +31,7 @@ public class FilterRoomTest {
     public void filtersRoomsTest() throws Exception {
         mockMvc.perform(
                         post("/room-create")
-                                .content(asJsonString(new RoomDto(1,  1, MEN, LUXE, 2)))
+                                .content(asJsonString(new RoomDto(1, 1, MEN, LUXE, 2)))
                                 .contentType(MediaType.APPLICATION_JSON)
                                 .accept(MediaType.APPLICATION_JSON))
                 .andExpect(status().is(200));
@@ -40,14 +39,14 @@ public class FilterRoomTest {
 
         mockMvc.perform(
                         post("/room-create")
-                                .content(asJsonString(new RoomDto(1,2, WOMEN, STANDARD, 20)))
+                                .content(asJsonString(new RoomDto(1, 2, WOMEN, STANDARD, 20)))
                                 .contentType(MediaType.APPLICATION_JSON)
                                 .accept(MediaType.APPLICATION_JSON))
                 .andExpect(status().is(200));
 
         mockMvc.perform(
                         post("/room-create")
-                                .content(asJsonString(new RoomDto(1,3, MEN, DE_LUXE, 13)))
+                                .content(asJsonString(new RoomDto(1, 3, MEN, DE_LUXE, 13)))
                                 .contentType(MediaType.APPLICATION_JSON)
                                 .accept(MediaType.APPLICATION_JSON))
                 .andExpect(status().is(200));

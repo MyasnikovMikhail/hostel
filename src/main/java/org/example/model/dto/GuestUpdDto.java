@@ -3,11 +3,9 @@ package org.example.model.dto;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.example.model.TypeGender;
 
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
-import javax.validation.constraints.NotNull;
 
 @Getter
 @Setter
@@ -23,7 +21,6 @@ public class GuestUpdDto {
     private String surname;
 
     private String patronymic;
-
 
     public GuestUpdDto(Integer numFlat, String name, String surname, String patronymic) {
         this.numFlat = numFlat;

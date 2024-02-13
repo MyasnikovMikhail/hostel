@@ -11,8 +11,8 @@ import org.springframework.test.web.servlet.MockMvc;
 
 import java.time.LocalDate;
 
-import static com.datical.liquibase.ext.command.init.InitProjectCommandStep$FileTypeEnum.json;
-import static org.example.model.TypeComfort.*;
+import static org.example.model.TypeComfort.LUXE;
+import static org.example.model.TypeComfort.STANDARD;
 import static org.example.model.TypeGender.MEN;
 import static org.example.model.TypeGender.WOMEN;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
@@ -31,7 +31,7 @@ public class RoomCreateTest {
     public void createRoomTest() throws Exception {
         mockMvc.perform(
                         post("/room-create")
-                                .content(asJsonString(new RoomDto(1,  20, MEN, LUXE, 2)))
+                                .content(asJsonString(new RoomDto(1, 20, MEN, LUXE, 2)))
                                 .contentType(MediaType.APPLICATION_JSON)
                                 .accept(MediaType.APPLICATION_JSON))
                 .andExpect(status().is(200));
@@ -39,7 +39,7 @@ public class RoomCreateTest {
 
         mockMvc.perform(
                         post("/room-create")
-                                .content(asJsonString(new RoomDto(10,6, WOMEN, STANDARD, 2)))
+                                .content(asJsonString(new RoomDto(10, 6, WOMEN, STANDARD, 2)))
                                 .contentType(MediaType.APPLICATION_JSON)
                                 .accept(MediaType.APPLICATION_JSON))
                 .andExpect(status().is(200));
@@ -65,7 +65,7 @@ public class RoomCreateTest {
     public void createRoomFailTest() throws Exception {
         mockMvc.perform(
                         post("/room-create")
-                                .content(asJsonString(new RoomDto(11,  4, MEN, LUXE, 2)))
+                                .content(asJsonString(new RoomDto(11, 4, MEN, LUXE, 2)))
                                 .contentType(MediaType.APPLICATION_JSON)
                                 .accept(MediaType.APPLICATION_JSON))
                 .andExpect(status().is(400));
@@ -79,7 +79,7 @@ public class RoomCreateTest {
 
         mockMvc.perform(
                         post("/room-create")
-                                .content(asJsonString(new RoomDto(10,  101, MEN, LUXE, 2)))
+                                .content(asJsonString(new RoomDto(10, 101, MEN, LUXE, 2)))
                                 .contentType(MediaType.APPLICATION_JSON)
                                 .accept(MediaType.APPLICATION_JSON))
                 .andExpect(status().is(400));
@@ -92,9 +92,6 @@ public class RoomCreateTest {
 
                 .andExpect(content().string("[]"));
     }
-
-
-
 
 
     public static String asJsonString(final Object obj) {

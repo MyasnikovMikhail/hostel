@@ -15,6 +15,7 @@ public class GlobalExceptionHandler {
 
         return new ResponseEntity<>(data, HttpStatus.NOT_FOUND);
     }
+
     @ExceptionHandler
     public ResponseEntity<IncorrectData> handlerException(NoSuchObjectException exception) {
         IncorrectData data = new IncorrectData();

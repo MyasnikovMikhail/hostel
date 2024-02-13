@@ -9,7 +9,6 @@ import org.example.model.TypeGender;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 
-
 @Getter
 @Setter
 @NoArgsConstructor

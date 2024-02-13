@@ -11,8 +11,6 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 
-import java.time.LocalDate;
-
 import static org.example.model.TypeComfort.LUXE;
 import static org.example.model.TypeComfort.STANDARD;
 import static org.example.model.TypeGender.MEN;
@@ -57,7 +55,7 @@ public class UpdateRoomTest {
 
         mockMvc.perform(
                         put("/rooms/20")
-                                .content(asJsonString(new RoomUpdDto(2,WOMEN,STANDARD,4)))
+                                .content(asJsonString(new RoomUpdDto(2, WOMEN, STANDARD, 4)))
                                 .contentType(MediaType.APPLICATION_JSON)
                                 .accept(MediaType.APPLICATION_JSON))
                 .andExpect(status().is(200));

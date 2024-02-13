@@ -6,7 +6,6 @@ import org.example.model.TypeGender;
 import org.example.model.dto.RoomDto;
 import org.example.model.dto.RoomUpdDto;
 import org.example.service.RoomService;
-import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -32,12 +31,12 @@ public class RoomController {
     }
 
     @GetMapping(value = "/room-read-all/gender/{gender}")
-    public List<RoomDto> readAll(@PathVariable(name = "gender")TypeGender typeGender) {
+    public List<RoomDto> readAll(@PathVariable(name = "gender") TypeGender typeGender) {
         return roomService.readAll(typeGender);
     }
 
     @GetMapping(value = "/room-read-all/comfort/{typeComfort}")
-    public List<RoomDto> readAll(@PathVariable(name = "typeComfort")TypeComfort typeComfort) {
+    public List<RoomDto> readAll(@PathVariable(name = "typeComfort") TypeComfort typeComfort) {
         return roomService.readAll(typeComfort);
     }
 
@@ -52,7 +51,7 @@ public class RoomController {
     }
 
     @PutMapping(value = "/rooms/{numFlat}")
-    public void update( @PathVariable(name = "numFlat") int numFlat,@RequestBody RoomUpdDto roomUpdDto) {
+    public void update(@PathVariable(name = "numFlat") int numFlat, @RequestBody RoomUpdDto roomUpdDto) {
         roomService.update(numFlat, roomUpdDto);
     }
 }

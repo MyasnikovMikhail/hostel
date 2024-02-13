@@ -4,7 +4,6 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import org.example.model.dto.GuestDto;
 import org.example.model.dto.GuestUpdDto;
 import org.example.model.dto.RoomDto;
-import org.example.model.dto.RoomUpdDto;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
@@ -13,9 +12,7 @@ import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 
 import static org.example.model.TypeComfort.LUXE;
-import static org.example.model.TypeComfort.STANDARD;
 import static org.example.model.TypeGender.MEN;
-import static org.example.model.TypeGender.WOMEN;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
@@ -43,7 +40,6 @@ public class UpdateGuestTest {
                                 .contentType(MediaType.APPLICATION_JSON)
                                 .accept(MediaType.APPLICATION_JSON))
                 .andExpect(status().is(200));
-
 
 
         mockMvc.perform(
@@ -78,7 +74,7 @@ public class UpdateGuestTest {
 
         mockMvc.perform(
                         put("/guests/3")
-                                .content(asJsonString(new GuestUpdDto(1, "Vlad", "Sidorov","Pavlovich")))
+                                .content(asJsonString(new GuestUpdDto(1, "Vlad", "Sidorov", "Pavlovich")))
                                 .contentType(MediaType.APPLICATION_JSON)
                                 .accept(MediaType.APPLICATION_JSON))
                 .andExpect(status().is(200));
@@ -105,8 +101,8 @@ public class UpdateGuestTest {
                 .andExpect(jsonPath("$[1].id").exists())
                 .andExpect(jsonPath("$[1].flat", 20).exists())
                 .andExpect(jsonPath("$[1].numberOfSeats", 1).exists());
-
     }
+
     public static String asJsonString(final Object obj) {
         try {
             return new ObjectMapper().writeValueAsString(obj);

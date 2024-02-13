@@ -39,7 +39,7 @@ public class Guest {
     private TypeGender gender;
 
     @Column(name = "date_change")
-    private LocalDate dateOfChange ;
+    private LocalDate dateOfChange;
 
     @Column(name = "date_addition")
     private LocalDate dateOfAddition;

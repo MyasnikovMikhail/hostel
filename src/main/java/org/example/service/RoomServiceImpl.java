@@ -2,7 +2,6 @@ package org.example.service;
 
 import org.example.exception.CannotDeleteObjectException;
 import org.example.exception.ErrorNumberGuests;
-import org.example.exception.NoSuchObjectException;
 import org.example.model.Room;
 import org.example.model.TypeComfort;
 import org.example.model.TypeGender;
@@ -38,7 +37,7 @@ public class RoomServiceImpl implements RoomService {
         return roomRepo
                 .findAll()
                 .stream()
-                .filter(i ->(i.getTotalSeats() - i.getNumberOfSeats() != i.getTotalSeats()))
+                .filter(i -> (i.getTotalSeats() - i.getNumberOfSeats() != i.getTotalSeats()))
                 .map(this::convertToRoomDTO)
                 .collect(Collectors.toList());
     }
@@ -88,11 +87,11 @@ public class RoomServiceImpl implements RoomService {
     @Override
     public void update(int numFlat, RoomUpdDto roomUpdDto) {
         Room room = roomRepo.findRoomByFlat(numFlat).orElseThrow(EntityNotFoundException::new);
-        room.setFlat(roomUpdDto.getFlat() == 0 ||  roomRepo.findRoomByFlat(roomUpdDto.getFlat()).isPresent() ? room.getFlat() : roomUpdDto.getFlat());
+        room.setFlat(roomUpdDto.getFlat() == 0 || roomRepo.findRoomByFlat(roomUpdDto.getFlat()).isPresent() ? room.getFlat() : roomUpdDto.getFlat());
         room.setTypeGender(roomUpdDto.getTypeGender() == null || room.getTotalSeats().intValue() != room.getNumberOfSeats().intValue() ? room.getTypeGender() : roomUpdDto.getTypeGender());
         room.setTypeComfort(roomUpdDto.getTypeComfort() == null ? room.getTypeComfort() : roomUpdDto.getTypeComfort());
 
-        if(roomUpdDto.getNumberOfSeats() >= room.getNumberOfSeats()) {
+        if (roomUpdDto.getNumberOfSeats() >= room.getNumberOfSeats()) {
             room.setNumberOfSeats(roomUpdDto.getNumberOfSeats() - (room.getTotalSeats() - room.getNumberOfSeats()));
             room.setTotalSeats(roomUpdDto.getNumberOfSeats());
         } else {
@@ -100,7 +99,6 @@ public class RoomServiceImpl implements RoomService {
         }
         room.setDateOfChange(LocalDate.now());
     }
-
 
     private Room roomDtoToRoom(RoomDto roomDto) {
         Room room = new Room();
@@ -114,7 +112,6 @@ public class RoomServiceImpl implements RoomService {
         room.setDateOfAddition(roomDto.getDateOfAddition());
         return room;
     }
-
 
     private RoomDto convertToRoomDTO(Room room) {
         RoomDto roomDto = new RoomDto();
