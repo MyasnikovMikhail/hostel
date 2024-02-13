@@ -6,8 +6,9 @@
       - url: jdbc:postgresql://localhost:5432/hostel
       - username: admin (логин владельца)
       - password: admin (пароль владельца)
-   - запустить SightsApplication
+   - запустить HostelApplication
       - Путь к .java: src/main/java/org/example/HostelApplication.java
+
 # Управление комнатами
 ## Получение всех комнат
  - метод GET
